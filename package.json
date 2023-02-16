@@ -1,0 +1,22 @@
+{
+  "name": "cms-style-tech-blog",
+  "version": "1.0.0",
+  "description": "blog site to publish articles",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SPloganathan/cms-style-tech-blog.git"
+  },
+  "keywords": [
+    "CMS"
+  ],
+  "author": "SAKTHIPRIYA LOGANATHAN",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SPloganathan/cms-style-tech-blog/issues"
+  },
+  "homepage": "https://github.com/SPloganathan/cms-style-tech-blog#readme"
+}
