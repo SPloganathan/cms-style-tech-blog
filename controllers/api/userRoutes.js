@@ -46,7 +46,6 @@ router.post("/logout", (req, res) => {
 // creating routes for adding users(sign up)
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body);
     const userData = await User.create(req.body);
     if (userData) {
       res.status(200).json({ message: "User created successfully!" });
@@ -54,7 +53,6 @@ router.post("/", async (req, res) => {
       res.status(404).json({ message: "insufficient data" });
     }
   } catch (err) {
-    console.log(err);
     res.status(400).json(err);
   }
 });
