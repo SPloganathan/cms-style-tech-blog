@@ -32,4 +32,4 @@ Comment.belongsTo(User, {
 });
 
 // exporting models
-module.export = { User, Blog, Comment };
+module.exports = { User, Blog, Comment };
