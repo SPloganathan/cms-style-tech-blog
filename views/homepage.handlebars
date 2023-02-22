@@ -1,8 +1,14 @@
-{{#each blogs as |blog| }}
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2> {{blog.title}}</h2>
-    <h2> {{blog.content}}</h2>
+{{#each blogs as |blog|}}
+  <div class="card mb-3">
+    <div class="card-header text-bg-dark">
+      <div class="float-start">{{blog.title}}</div>
+      <div class="float-end">Posted by
+        {{blog.user.name}}
+        on
+        {{format_date blog.createdAt}}</div>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{blog.content}}</p>
+    </div>
   </div>
-</div>
 {{/each}}
