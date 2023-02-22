@@ -25,14 +25,23 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/login", (req, res) => {
-//   // TODO: Add a comment describing the functionality of this if statement
-//   if (req.session.logged_in) {
-//     res.redirect("/");
-//     return;
-//   }
+router.get("/login", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/");
+    return;
+  }
 
-//   res.render("login");
-// });
+  res.render("login");
+});
+
+router.get("/logout", (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.redirect("/");
+    });
+  } else {
+    res.redirect("/");
+  }
+});
 
 module.exports = router;
