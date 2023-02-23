@@ -1,12 +1,11 @@
 {{#each blogs as |blog|}}
   <div class="card mb-3">
     <div class="card-header text-bg-dark">
-      <div class="float-start">{{blog.title}}</div>
+      <div class="float-start">
+        <a class="link-light" href="/blog/{{blog.id}}">{{blog.title}}</a></div>
       <div class="float-end">
         {{format_date blog.createdAt}}</div>
     </div>
   </div>
 {{/each}}
-<form action="/blog" class="form login-form">
-  <button class="btn btn-dark align-self-end" type="submit">+ NEW POST</button>
-</form>
+<a href="/blog" class="btn btn-dark align-self-end" type="submit">+ NEW POST</a>
