@@ -31,6 +31,28 @@ const createBlogHandler = async (event) => {
   }
 };
 
+const deleteBlogHandler = async (event) => {
+  event.preventDefault();
+  const blog_id = document.querySelector("#blog-id").value.trim();
+
+  if (blog_id) {
+    const response = await fetch("/api/blogs/" + blog_id, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      document.location.replace("/dashboard");
+    } else {
+      alert("Failed to delete blog.");
+    }
+  }
+};
+
 document
   .querySelector(".blog-creation-form")
   .addEventListener("submit", createBlogHandler);
+
+document
+  .querySelector("#blog-delete")
+  .addEventListener("click", deleteBlogHandler);
