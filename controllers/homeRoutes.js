@@ -67,4 +67,10 @@ router.get("/dashboard", async (req, res) => {
   }
 });
 
+router.get("/blog", (req, res) => {
+  res.render("blog", {
+    user_id: req.session.user_id,
+  });
+});
+
 module.exports = router;
