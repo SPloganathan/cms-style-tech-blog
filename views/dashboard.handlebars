@@ -1,0 +1,9 @@
+{{#each blogs as |blog|}}
+  <div class="card mb-3">
+    <div class="card-header text-bg-dark">
+      <div class="float-start">{{blog.title}}</div>
+      <div class="float-end">
+        {{format_date blog.createdAt}}</div>
+    </div>
+  </div>
+{{/each}}
