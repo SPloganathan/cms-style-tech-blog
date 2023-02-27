@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { Blog, User, Comment } = require("../models");
-// const withAuth = require('../utils/auth');
 
 // below route will renders the homepage of the blog
 router.get("/", async (req, res) => {
@@ -31,6 +30,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+//  renders the login view
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
     res.redirect("/");
@@ -40,6 +40,7 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+// below route will clear the cookie and logout the user
 router.get("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -50,6 +51,7 @@ router.get("/logout", (req, res) => {
   }
 });
 
+// below routes will render the dashboard view with blog data
 router.get("/dashboard", async (req, res) => {
   try {
     const blogData = await Blog.findAll({
@@ -73,12 +75,14 @@ router.get("/dashboard", async (req, res) => {
   }
 });
 
+// below route will render the blog view
 router.get("/blog", (req, res) => {
   res.render("blog", {
     user_id: req.session.user_id,
   });
 });
 
+// below route is used for updating the blog using ID
 router.get("/blog/:id", async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {
@@ -94,6 +98,7 @@ router.get("/blog/:id", async (req, res) => {
 
     const blog = blogData.get({ plain: true });
 
+    // render the blog view with blog and user data
     res.render("blog", {
       blog,
       logged_in: req.session.logged_in,

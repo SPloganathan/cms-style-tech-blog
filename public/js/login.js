@@ -1,3 +1,5 @@
+// below handler is for loging the user
+
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -19,6 +21,7 @@ const loginFormHandler = async (event) => {
   }
 };
 
+// below handler is for adding a new user
 const signupFormHandler = async (event) => {
   event.preventDefault();
 

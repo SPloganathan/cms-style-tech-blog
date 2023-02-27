@@ -1,3 +1,4 @@
+// the below handler will create or update the blog based on the blog ID
 const createBlogHandler = async (event) => {
   event.preventDefault();
 
@@ -8,7 +9,7 @@ const createBlogHandler = async (event) => {
 
   if (title && content && user_id) {
     let response;
-    // below if block denoted the blog update fetch
+    // below if block denotes the blog update fetch
     if (blog_id !== "") {
       response = await fetch("/api/blogs/" + blog_id, {
         method: "PUT",
@@ -30,7 +31,7 @@ const createBlogHandler = async (event) => {
     }
   }
 };
-
+// the below handler will delete the blog based on the blog ID
 const deleteBlogHandler = async (event) => {
   event.preventDefault();
   const blog_id = document.querySelector("#blog-id").value.trim();
@@ -48,11 +49,11 @@ const deleteBlogHandler = async (event) => {
     }
   }
 };
-
+// adding a submit event listener to the blog form
 document
   .querySelector(".blog-creation-form")
   .addEventListener("submit", createBlogHandler);
-
+// adding a click event listener to the delete button
 document
   .querySelector("#blog-delete")
   .addEventListener("click", deleteBlogHandler);

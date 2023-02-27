@@ -8,7 +8,7 @@ function showCommentSectionHandler(event) {
     "#comment-section"
   ).style.display = "block";
 }
-
+// the below function will save the newly created comment
 const saveCommentHandler = async (event) => {
   const parentElement = event.target.parentNode.parentNode.parentNode;
   const blog_id = parentElement.querySelector("#blog_id").value;
