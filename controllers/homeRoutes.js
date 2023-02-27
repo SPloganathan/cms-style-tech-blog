@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Blog, User } = require("../models");
+const { Blog, User, Comment } = require("../models");
 // const withAuth = require('../utils/auth');
 
 // below route will renders the homepage of the blog
@@ -11,6 +11,11 @@ router.get("/", async (req, res) => {
           model: User,
           attributes: ["name"],
         },
+        {
+          model: Comment,
+          // Using nested inclue model to refer the user_id in Comment model
+          include: [User],
+        },
       ],
     });
 
@@ -19,6 +24,7 @@ router.get("/", async (req, res) => {
     res.render("homepage", {
       blogs,
       logged_in: req.session.logged_in,
+      user_id: req.session.user_id,
     });
   } catch (err) {
     res.status(500).json(err);

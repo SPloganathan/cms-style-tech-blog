@@ -1,14 +1,78 @@
+{{!-- Iterating each blog items using each --}}
 {{#each blogs as |blog|}}
-  <div class="card mb-3">
-    <div class="card-header text-bg-dark">
-      <div class="float-start">{{blog.title}}</div>
-      <div class="float-end">Posted by
-        {{blog.user.name}}
-        on
-        {{format_date blog.createdAt}}</div>
+  <div class="wrapper">
+    <div class="card mb-3">
+      <div class="card-header text-bg-dark">
+        {{!-- Comments can be added only the user is logged in. Since its in each block ../ is required --}}
+        {{!-- Click event added to "blog-title" in homepage.js --}}
+        {{#if ../logged_in}}
+        <div class="float-start" id="blog-title">{{blog.title}}</div>
+        {{else}}
+        <div class="float-start">{{blog.title}}</div>
+        {{/if}}
+        <div class="float-end">Posted by
+          {{blog.user.name}}
+          on
+          {{format_date blog.createdAt}}</div>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{blog.content}}</p>
+        {{!-- Comment section will be rendered only when it has atleast one comment to this blog --}}
+        {{#if blog.comments.length}}
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{blog.id}}" aria-expanded="true" aria-controls="collapseOne{{blog.id}}">
+                View Comments
+              </button>
+            </h2>
+            <div id="collapseOne{{blog.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+              {{!-- Iterating each comment inside blog items using each --}}
+                {{#each blog.comments as |comment|}}
+                    <div class="card-body">
+                      <div class="card-text float-start">{{comment.content}}</div>
+                      <div class="card-text float-end">Posted by {{comment.user.name}}</div>
+                    </div>
+                  {{/each}}
+              </div>
+            </div>
+          </div>
+        </div> 
+        {{/if}}
+      </div>
     </div>
-    <div class="card-body">
-      <p class="card-text">{{blog.content}}</p>
+    {{!-- By default below section will be hidden using css. On clicking "blog-title" css property updated using js  --}}
+    <div class="card mb-3" id="comment-section">
+      <div class="card-header text-bg-dark">
+        <div>Add Comment</div>
+      </div>
+      <div class="card-body">
+        <div class="mb-3">
+          <textarea class="form-control" id="comment-text"></textarea>
+          {{!-- Hidden inputs are used while saving the comments --}}
+          <input
+            type="hidden"
+            class="form-control"
+            id="user_id"
+            value={{../user_id}}
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            id="blog_id"
+            value={{blog.id}}
+          />
+        </div>
+        <div class="form-group">
+          <button
+            class="btn btn-dark"
+            id="save-comment"
+            type="submit"
+          >Submit</button>
+        </div>
+      </div>
     </div>
   </div>
 {{/each}}
+<script src="../js/homepage.js"></script>

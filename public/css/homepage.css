@@ -1,0 +1,9 @@
+/*CSS for homepage files */
+
+#comment-section {
+  display: none;
+}
+
+#blog-title {
+  cursor: pointer;
+}
