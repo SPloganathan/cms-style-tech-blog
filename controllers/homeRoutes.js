@@ -79,6 +79,7 @@ router.get("/dashboard", async (req, res) => {
 router.get("/blog", (req, res) => {
   res.render("blog", {
     user_id: req.session.user_id,
+    logged_in: req.session.logged_in,
   });
 });
 
