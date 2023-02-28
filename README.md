@@ -53,8 +53,8 @@ This project is licensed under The MIT License
 
 ## Deployed
 
-The demo link for this project
-## https://drive.google.com/file/d/1c6EtdbMqof2M5aALBLvZf2Nu55Hi9JWH/view?usp=sharing
+The deployed link for this project
+## https://cms-style-tech-blogg.herokuapp.com/
 
 ## Questions
 
